@@ -1,0 +1,48 @@
+#Mutation is to be used when creating an entry in the DB via GraphQL
+type Mutation{
+	#Inside () we mention the input parameters and after : we mention the output type
+	createBook(book:BookInput):Book
+	createGenre(bookGenre:BookGenreInput):BookGenre
+}
+
+#Query is to be used when fetching any info from the DB via GraphQL
+type Query{
+#[] Mentions that it will return a collection of the type mention inside in it.
+	allBooks:[Book]
+	getBook(bookId:Int):Book
+	getGenre(GenreId:Float):BookGenre
+	allGenre:[BookGenre]
+
+}
+
+#We must define every secondary data type used in the Query and Mutation like Book and BookInput what does they contain.
+
+type Book{
+#The ! means that it will not be null
+	id:ID!
+	title:String
+	desc:String
+	author:String
+	price:Float
+	pages:Int
+	genreId:Float
+
+}
+type BookGenre{
+	id:ID!
+	type:String
+
+}
+#We should also define the data type of the input that will be used by the GraphQL
+input BookInput{
+	title:String
+	desc:String
+	author:String
+	price:Float
+	pages:Int
+	genre:String
+}
+
+input BookGenreInput{
+	type:String
+}
