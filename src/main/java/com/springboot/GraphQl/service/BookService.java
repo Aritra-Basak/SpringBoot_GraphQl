@@ -5,8 +5,7 @@ package com.springboot.GraphQl.service;
 
 import java.util.List;
 
-import javax.management.RuntimeErrorException;
-
+import com.springboot.GraphQl.repository.BookAndGenreTogether;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +21,9 @@ public class BookService implements BookServiceInterface {
 
 	@Autowired
 	private BookRepo bookRep;
+
+	@Autowired
+	private BookAndGenreTogether bgt;
 	
 	@Override
 	public Book create(Book book) {
@@ -31,6 +33,10 @@ public class BookService implements BookServiceInterface {
 	@Override
 	public List<Book> getAll() {
 		return bookRep.findAll();
+	}
+	@Override
+	public List<Book> getAllBookAndGenre() {
+		return bgt.getAllBookAndGenre();
 	}
  
 	@Override

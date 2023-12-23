@@ -5,10 +5,8 @@ package com.springboot.GraphQl.controller;
 
 import java.util.List;
 
-import com.springboot.GraphQl.entity.BookGenre;
-import com.springboot.GraphQl.entity.BookGenreInput;
-import com.springboot.GraphQl.entity.BookInput;
-import com.springboot.GraphQl.service.GenreService;
+import com.springboot.GraphQl.entity.*;
+import com.springboot.GraphQl.service.GenreServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
@@ -16,7 +14,6 @@ import org.springframework.graphql.data.method.annotation.QueryMapping;
 
 import org.springframework.stereotype.Controller;
 
-import com.springboot.GraphQl.entity.Book;
 import com.springboot.GraphQl.service.BookServiceInterface;
 
 /**
@@ -32,7 +29,7 @@ public class GraphQlController {
 	private BookServiceInterface bookService;
 
 	@Autowired
-	private GenreService genreService;
+	private GenreServiceInterface genreService;
 
 	/*
 	*For creating an entry in the DB.
@@ -78,16 +75,19 @@ public class GraphQlController {
 		return bookService.getAll();
 	}
 
+	@QueryMapping("allBooksAndGenre")
+	public List<Book> getAllBookAndGenre(){ return bookService.getAllBookAndGenre();}
+
 	@QueryMapping("allGenre")
 	public List<BookGenre> getAllGenre(){return genreService.getAllGenre(); }
 
 	@QueryMapping("getGenre")
 	public BookGenre getGenre(@Argument long id){return  genreService.getSingleGenre(id);}
 
-	@MutationMapping("createGenre")
+	@MutationMapping("createBookGenre")
 	public BookGenre createGenre(@Argument BookGenreInput bookGenreInput){
 		BookGenre bg = new BookGenre();
-		bg.setType(bookGenreInput.getType());
+		bg.setGenreType(bookGenreInput.getGenreType());
 		return genreService.createGenre(bg);
 	}
 	

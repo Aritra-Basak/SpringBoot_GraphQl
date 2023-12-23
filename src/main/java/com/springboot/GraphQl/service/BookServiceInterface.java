@@ -15,5 +15,6 @@ public interface BookServiceInterface {
 	public Book create(Book book);
 	public List<Book> getAll();
 	public Book getSingleBook(int bookId);
+	public List<Book> getAllBookAndGenre() ;
 	
 }

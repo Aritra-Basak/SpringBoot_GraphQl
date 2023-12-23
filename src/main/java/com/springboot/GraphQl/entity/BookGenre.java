@@ -3,13 +3,11 @@
  */
 package com.springboot.GraphQl.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+
+import java.util.List;
 
 /**
  * @author Aritra
@@ -26,6 +24,9 @@ public class BookGenre {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	long id;
-	String type;
+	@Column(name = "type")
+	String genreType;
+	@OneToMany
+	List<Book> books;
 
 }

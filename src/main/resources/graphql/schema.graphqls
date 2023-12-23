@@ -2,7 +2,7 @@
 type Mutation{
 	#Inside () we mention the input parameters and after : we mention the output type
 	createBook(book:BookInput):Book
-	createGenre(bookGenre:BookGenreInput):BookGenre
+	createBookGenre(bookGenre:BookGenreInput):BookGenre
 }
 
 #Query is to be used when fetching any info from the DB via GraphQL
@@ -12,6 +12,7 @@ type Query{
 	getBook(bookId:Int):Book
 	getGenre(GenreId:Float):BookGenre
 	allGenre:[BookGenre]
+	allBooksAndGenre:[Book]
 
 }
 
@@ -26,13 +27,17 @@ type Book{
 	price:Float
 	pages:Int
 	genreId:Float
+	genreType:String
 
 }
+
 type BookGenre{
 	id:ID!
-	type:String
+	genreType:String
+	books:[Book]
 
 }
+
 #We should also define the data type of the input that will be used by the GraphQL
 input BookInput{
 	title:String
@@ -44,5 +49,5 @@ input BookInput{
 }
 
 input BookGenreInput{
-	type:String
+	genreType:String
 }

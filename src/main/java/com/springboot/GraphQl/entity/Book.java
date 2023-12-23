@@ -3,12 +3,8 @@
  */
 package com.springboot.GraphQl.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -32,9 +28,10 @@ public class Book {
 	String author;
 	double price;
 	int pages;
-	@Column(name = "GENRE_ID")
+	@JsonProperty(value ="genre_id")
+	@Column(name = "genre_id")
 	long genreId;
-
-	
-
+	@JsonProperty(value="genre_type")
+	@Transient
+	String genreType;
 }
