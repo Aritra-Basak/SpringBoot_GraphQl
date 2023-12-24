@@ -1,6 +1,6 @@
 package com.springboot.GraphQl.service;
 
-import com.springboot.GraphQl.entity.BookGenre;
+import com.springboot.GraphQl.entity.Genre;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface GenreServiceInterface {
 
-    public List<BookGenre> getAllGenre();
-    public BookGenre getSingleGenre(long id);
-    public BookGenre createGenre(BookGenre genre);
+    public List<Genre> getAllGenre();
+    public Genre getSingleGenre(long id);
+    public Genre createGenre(Genre genre);
 }

@@ -30,7 +30,7 @@ public class Book {
 	int pages;
 	@JsonProperty(value ="genre_id")
 	@Column(name = "genre_id")
-	long genreId;
+	int genreId;
 	@JsonProperty(value="genre_type")
 	@Transient
 	String genreType;

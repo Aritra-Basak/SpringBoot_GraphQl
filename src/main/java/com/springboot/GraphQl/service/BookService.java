@@ -34,14 +34,24 @@ public class BookService implements BookServiceInterface {
 	public List<Book> getAll() {
 		return bookRep.findAll();
 	}
+	
+	@Override
+	public Book getSingleBook(int bookId) {
+		return bookRep.findById(bookId).orElseThrow(()->new RuntimeException("The Book you are looking for, not found in the server."));
+	}
+	
 	@Override
 	public List<Book> getAllBookAndGenre() {
 		return bgt.getAllBookAndGenre();
 	}
- 
+ 	
 	@Override
-	public Book getSingleBook(int bookId) {
-		return bookRep.findById(bookId).orElseThrow(()->new RuntimeException("The Book you are looking for, not found in the server."));
+	public Book getSingleBookAndGenre(int bookId) throws Exception {
+		Book bk =bgt.getSingleBookAndGenre(bookId);
+		if(bk!=null)
+			return bk;
+		else
+			throw new Exception("The Book you are looking for, not found in the server.");
 	}
 
 }

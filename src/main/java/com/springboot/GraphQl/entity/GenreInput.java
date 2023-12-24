@@ -1,9 +1,6 @@
 package com.springboot.GraphQl.entity;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 /**
  * @author Aritra
@@ -13,6 +10,6 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class BookGenreInput {
+public class GenreInput {
     String genreType;
 }

@@ -16,5 +16,6 @@ public interface BookServiceInterface {
 	public List<Book> getAll();
 	public Book getSingleBook(int bookId);
 	public List<Book> getAllBookAndGenre() ;
+	public Book getSingleBookAndGenre(int bookId) throws Exception;
 	
 }

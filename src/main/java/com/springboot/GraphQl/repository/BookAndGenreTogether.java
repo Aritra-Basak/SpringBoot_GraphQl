@@ -1,7 +1,7 @@
 package com.springboot.GraphQl.repository;
 
 import com.springboot.GraphQl.entity.Book;
-import com.springboot.GraphQl.entity.BookGenre;
+import com.springboot.GraphQl.entity.Genre;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -39,12 +39,13 @@ public class BookAndGenreTogether {
         // The lambda expression defines how each row is mapped to an object.
     }
 
-    public List<Book> getSingleBookAndGenre(int id) {
+    @SuppressWarnings("deprecation")
+	public Book getSingleBookAndGenre(int id) {
         String sql = "SELECT pb.ID, pb.TITLE, pb.DESC, pb.AUTHOR, pb.PRICE, pb.PAGES, gt.TYPE AS GENRE_TYPE " +
                 "FROM project_books pb " +
-                "INNER JOIN genre_type gt ON pb.GENRE_ID = gt.ID";
+                "INNER JOIN genre_type gt ON pb.GENRE_ID = gt.ID WHERE pb.ID = ?";
 
-        return jdbcTemplate.query(sql, (rs, rowNum) -> {
+        return jdbcTemplate.queryForObject(sql, new Object[]{id}, (rs, rowNum) -> {
             Book book = new Book();
             book.setId(rs.getInt("ID"));
             book.setTitle(rs.getString("TITLE"));
@@ -55,10 +56,6 @@ public class BookAndGenreTogether {
             book.setGenreType(rs.getString("GENRE_TYPE"));
             return book;
         });
-        //(rs, rowNum) -> {...}: This is a lambda expression that processes the results of the SQL query.It is called for each row in the result set.
-        //rs: Stands for ResultSet. It represents the result set of the executed query, which contains the data retrieved from the database.
-        //rowNum: Represents the current row number in the result set.
-        //The query method returns a list of objects, where each object represents a row in the result set.
-        // The lambda expression defines how each row is mapped to an object.
+        
     }
 }

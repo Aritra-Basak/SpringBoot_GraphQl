@@ -1,6 +1,6 @@
 package com.springboot.GraphQl;
 
-import com.springboot.GraphQl.entity.BookGenre;
+import com.springboot.GraphQl.entity.Genre;
 import com.springboot.GraphQl.repository.BookGenreRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -41,20 +41,20 @@ public class GraphQlApplication implements CommandLineRunner{
 		
 		bookRepo.saveAll(listOfBooks);
 
-		List<BookGenre> genreList = new ArrayList<>();
-		BookGenre bg1 = new BookGenre();
+		List<Genre> genreList = new ArrayList<>();
+		Genre bg1 = new Genre();
 		bg1.setGenreType("Thriller");
 		genreList.add(bg1);
-		BookGenre bg2 = new BookGenre();
+		Genre bg2 = new Genre();
 		bg2.setGenreType("Fictional");
 		genreList.add(bg2);
-		BookGenre bg3 = new BookGenre();
+		Genre bg3 = new Genre();
 		bg3.setGenreType("Detective");
 		genreList.add(bg3);
-		BookGenre bg4 = new BookGenre();
+		Genre bg4 = new Genre();
 		bg4.setGenreType("Informative");
 		genreList.add(bg4);
-		BookGenre bg5 = new BookGenre();
+		Genre bg5 = new Genre();
 		bg5.setGenreType("Other");
 		genreList.add(bg5);
 

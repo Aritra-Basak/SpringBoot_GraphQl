@@ -20,10 +20,10 @@ import java.util.List;
 @Builder
 @Entity
 @Table(name="genre_type")
-public class BookGenre {
+public class Genre {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	long id;
+	int id;
 	@Column(name = "type")
 	String genreType;
 	@OneToMany

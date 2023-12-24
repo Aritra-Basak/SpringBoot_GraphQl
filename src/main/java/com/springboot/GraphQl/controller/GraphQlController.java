@@ -32,11 +32,13 @@ public class GraphQlController {
 	private GenreServiceInterface genreService;
 
 	/*
-	*For creating an entry in the DB.
+	*For creating an entry in the DB of type Book.
 	* Using MutationMapping to map the query from schema which will create a new entry
 	* **/
 	@MutationMapping("createBook")
 	public Book create(@Argument BookInput book) {
+		//In @Argument keep the object reference variable name as same as that of the Query's parameter value reference.
+		//Like in query ->createBook(book:BookInput):Book so the @Argument object reference variable will be book.
 		Book b=new Book();
 		b.setTitle(book.getTitle());
 		b.setDesc(book.getDesc());
@@ -55,41 +57,67 @@ public class GraphQlController {
 			b.setGenreId(5);
 		return bookService.create(b);
 	}
+	
 	/*
-	 *For Fetching a single entry from the DB.
+	 *For Fetching a single entry from the DB of type Book.
 	 * Using QueryMapping to map the query from schema which will fetch a single entry
 	 * **/
-	
 	@QueryMapping("getBook")
 	public Book getBook(@Argument int bookId){
 		return bookService.getSingleBook(bookId);
 	}
 
 	/*
-	 *For Fetching a Multiple entries from the DB.
+	 *For Fetching a Multiple entries from the DB of type Book.
 	 * Using QueryMapping to map the query from schema which will fetch multiple entries
 	 * **/
-
 	@QueryMapping("allBooks")
 	public List<Book> getAllBook(){
 		return bookService.getAll();
 	}
-
+	
+	/*
+	 *For Fetching Book with its respective Genre from DB.
+	 * Using QueryMapping to map the query from schema which will fetch multiple required entries
+	 * **/
 	@QueryMapping("allBooksAndGenre")
-	public List<Book> getAllBookAndGenre(){ return bookService.getAllBookAndGenre();}
-
-	@QueryMapping("allGenre")
-	public List<BookGenre> getAllGenre(){return genreService.getAllGenre(); }
-
-	@QueryMapping("getGenre")
-	public BookGenre getGenre(@Argument long id){return  genreService.getSingleGenre(id);}
-
-	@MutationMapping("createBookGenre")
-	public BookGenre createGenre(@Argument BookGenreInput bookGenreInput){
-		BookGenre bg = new BookGenre();
-		bg.setGenreType(bookGenreInput.getGenreType());
-		return genreService.createGenre(bg);
+	public List<Book> getAllBookAndGenre(){
+		return bookService.getAllBookAndGenre();
+		}
+	
+	@QueryMapping("getBookAndGenre")
+	public Book getBookAndGenre(@Argument int bookId) throws Exception{
+		return bookService.getSingleBookAndGenre(bookId);
 	}
 	
+	
+	/*
+	 *For creating an entry in the DB of type Genre.
+	 * Using MutationMapping to map the query from schema which will create the required entry
+	 * **/
+	@MutationMapping("createGenre")
+	public Genre createGenre(@Argument GenreInput genre) {
+		Genre gn = new Genre();
+		gn.setGenreType(genre.getGenreType());
+		return genreService.createGenre(gn);	
+	}
+	
+	/*
+	 *For Fetching all the Genre with all the Books available of that respective Genre from DB.
+	 * Using QueryMapping to map the query from schema which will fetch multiple required entries
+	 * **/	
+	@QueryMapping("allGenre")
+	public List<Genre> getAllGenre(){
+		return genreService.getAllGenre();
+		}
+
+	/*
+	 *For Fetching the Genre with all the Books available of that respective Genre from DB.
+	 * Using QueryMapping to map the query from schema which will fetch single required entries
+	 * **/	
+	@QueryMapping("getGenre")
+	public Genre getGenre(@Argument int genreId){
+		return genreService.getSingleGenre(genreId);
+	}
 
 }
