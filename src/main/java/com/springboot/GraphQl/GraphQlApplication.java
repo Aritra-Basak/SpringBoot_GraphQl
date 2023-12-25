@@ -43,21 +43,17 @@ public class GraphQlApplication implements CommandLineRunner{
 
 		List<Genre> genreList = new ArrayList<>();
 		Genre bg1 = new Genre();
-		bg1.setGenreType("Thriller");
+		bg1.setGenreType("thriller");
 		genreList.add(bg1);
 		Genre bg2 = new Genre();
-		bg2.setGenreType("Fictional");
+		bg2.setGenreType("fictional");
 		genreList.add(bg2);
 		Genre bg3 = new Genre();
-		bg3.setGenreType("Detective");
+		bg3.setGenreType("detective");
 		genreList.add(bg3);
 		Genre bg4 = new Genre();
-		bg4.setGenreType("Informative");
+		bg4.setGenreType("informative");
 		genreList.add(bg4);
-		Genre bg5 = new Genre();
-		bg5.setGenreType("Other");
-		genreList.add(bg5);
-
 
 		genreRepo.saveAll(genreList);
 

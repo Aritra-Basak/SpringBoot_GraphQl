@@ -6,11 +6,14 @@ package com.springboot.GraphQl.service;
 import java.util.List;
 
 import com.springboot.GraphQl.repository.BookAndGenreTogether;
+import com.springboot.GraphQl.repository.BookGenreRepo;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.springboot.GraphQl.entity.Book;
 import com.springboot.GraphQl.entity.BookInput;
+import com.springboot.GraphQl.entity.Genre;
 import com.springboot.GraphQl.repository.BookRepo;
 
 /**
@@ -26,6 +29,9 @@ public class BookService implements BookServiceInterface {
 	@Autowired
 	private BookAndGenreTogether bgt;
 	
+	@Autowired
+	private BookGenreRepo genreRepo;
+	
 	@Override
 	public Book create(BookInput book) {
 		Book b=new Book();
@@ -34,17 +40,18 @@ public class BookService implements BookServiceInterface {
 		b.setPrice(book.getPrice());
 		b.setAuthor(book.getAuthor());
 		b.setPages(book.getPages());
-		if(book.getGenre().equalsIgnoreCase("Thriller"))
-			b.setGenreId(1);
-		else if (book.getGenre().equalsIgnoreCase("Fictional"))
-			b.setGenreId(2);
-		else if (book.getGenre().equalsIgnoreCase("Detective"))
-			b.setGenreId(3);
-		else if (book.getGenre().equalsIgnoreCase("Informative"))
-			b.setGenreId(4);
-		else
-			b.setGenreId(5);
-
+		String genreValue=book.getGenre().trim().toLowerCase();
+		Genre gg = new Genre();
+		gg=genreRepo.getByGenreType(genreValue);
+		if(gg==null) {
+			Genre newGenre = new Genre();
+			newGenre.setGenreType(genreValue);
+			newGenre = genreRepo.save(newGenre);
+			b.setGenreId(newGenre.getId());
+		}
+		else{
+			b.setGenreId(gg.getId());
+		}
 		return bookRep.save(b);
 	}
 

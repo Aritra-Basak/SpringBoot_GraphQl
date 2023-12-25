@@ -11,4 +11,6 @@ import com.springboot.GraphQl.entity.Genre;
  */
 @Repository
 public interface BookGenreRepo extends JpaRepository<Genre, Long> {
+	public Genre getByGenreType(String genreType);
 }
+
