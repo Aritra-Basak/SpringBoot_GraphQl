@@ -1,11 +1,15 @@
 package com.springboot.GraphQl.repository;
 
 import com.springboot.GraphQl.entity.Book;
-import com.springboot.GraphQl.entity.Genre;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+
+/**
+ * DAO to use JDBC Template of Spring-framework to process custom Query to fetch the required results.
+ * @author Aritra
+ * **/
 
 @Repository
 public class BookAndGenreTogether {

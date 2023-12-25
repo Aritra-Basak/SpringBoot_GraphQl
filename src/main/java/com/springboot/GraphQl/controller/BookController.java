@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.springboot.GraphQl.entity.Book;
+import com.springboot.GraphQl.entity.BookInput;
 import com.springboot.GraphQl.service.BookServiceInterface;
 
 /**
@@ -30,7 +31,7 @@ public class BookController {
 	private BookServiceInterface bookService;
 	
 	@PostMapping(value="/create")
-	public ResponseEntity<Book> create(@RequestBody Book book){
+	public ResponseEntity<Book> create(@RequestBody BookInput book){
 		return new ResponseEntity<Book>(bookService.create(book),HttpStatus.CREATED);
 	}
 	

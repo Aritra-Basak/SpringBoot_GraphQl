@@ -2,6 +2,7 @@ package com.springboot.GraphQl.service;
 
 import com.springboot.GraphQl.entity.Book;
 import com.springboot.GraphQl.entity.Genre;
+import com.springboot.GraphQl.entity.GenreInput;
 import com.springboot.GraphQl.repository.BookGenreRepo;
 import com.springboot.GraphQl.repository.BookRepo;
 
@@ -40,7 +41,9 @@ public class GenreService implements GenreServiceInterface {
     }
     
     @Override
-    public Genre createGenre(Genre genre){
-        return genreRepo.save(genre);
+    public Genre createGenre(GenreInput genre){
+    	Genre gn = new Genre();
+		gn.setGenreType(genre.getGenreType());
+        return genreRepo.save(gn);
     }
 }
