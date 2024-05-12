@@ -1,4 +1,5 @@
 # Spring Boot GraphQL Integration
+![alt text](https://github.com/Aritra-Basak/SpringBoot_GraphQl/blob/master/images/icon.webp?raw=true)
 ## Welcome to the Spring Boot GraphQL Integration project! This repository contains a robust API developed using Spring Boot and integrated with GraphQL, enhancing the request-response mechanism for increased efficiency and flexibility.
 
 ## Features
@@ -13,6 +14,9 @@ This project relies on the following Maven dependency:
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-graphql</artifactId>
 </dependency>
+
+## Result
+![alt text](https://github.com/Aritra-Basak/SpringBoot_GraphQl/blob/master/images/res.png?raw=true)
 
 ## H2 In-Memory Database
 The project utilizes H2 Database as an in-memory database. H2 is an embedded, open-source database management system written in Java. While in-memory databases like H2 are ideal for rapid prototyping and proof of concepts due to their lightweight nature, it's important to note that they are not recommended for production environments where persistent data storage is required.
